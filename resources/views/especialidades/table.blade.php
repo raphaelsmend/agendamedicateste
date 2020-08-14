@@ -28,7 +28,7 @@
 @section('javascript')
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#especialidades-table').DataTable();
+            formatarTabela('especialidades-table');
         } );
     </script>
 @endsection

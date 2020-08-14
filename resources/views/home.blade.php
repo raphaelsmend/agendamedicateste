@@ -1,3 +1,4 @@
+{{-- {{dd('aqui')}} --}}
 @extends('layouts.app')
 
 @section('content')

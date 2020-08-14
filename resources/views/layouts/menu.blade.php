@@ -7,6 +7,9 @@
         </span>
     </a>
     <ul class="treeview-menu" style="display: block;">
+        <li class="{{ Request::is('usuarios*') ? 'active' : '' }}">
+            <a href="{{ route('usuarios.index') }}"><i class="fa fa-edit"></i><span>Usuários</span></a>
+        </li>
         <li class="{{ Request::is('especialidades*') ? 'active' : '' }}">
             <a href="{{ route('especialidades.index') }}"><i class="fa fa-edit"></i><span>Especialidades</span></a>
         </li>
@@ -31,3 +34,5 @@
         </li>
     </ul>
 </li>
+
+

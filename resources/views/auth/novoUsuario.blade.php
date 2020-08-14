@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,11 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>Agenda Médica</title>
-    <style>
-        body {
-            background-image: url("../app/utils/imagens/images.jfif");
-        }
-    </style>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -38,17 +33,16 @@
     <![endif]-->
 
 </head>
-{{-- <body class="hold-transition login-page" style="background-image: url('imagens/images.jfif'); background-position: center; "> --}}
 <body class="hold-transition login-page" style="background-image: url('imagens/6274.jpg'); background-repeat: no-repeat; background-position: center; background-size: 100%;">
-
 <div class="login-box">
     <div class="login-logo" style="width: 400px">
         <a href="{{ url('/home') }}">Agenda Médica</a>
+        
     </div>
     
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Faça Login pra iniciar sua sessão</p>
+        <p class="login-box-msg">NOVO USUÁRIO - Preencha corretamente os dados abaixo:</p>
         @include('flash::message')
         {{--<div id="erros">
              <div class="alert
@@ -58,7 +52,7 @@
             Usuário não encontrado.
             </div> 
         </div>--}}
-        <form method="POST" action="{{ route('login.submit') }}">
+        <form method="POST" action="{{ route('senha.novo') }}">
             {!! csrf_field() !!}
 
             {{-- <div class="form-group has-feedback">
@@ -71,22 +65,42 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div> --}}
 
-            <div class="form-group has-feedback">
-                <input placeholder="E-mail" id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus onkeyup="CNPJCPFMsk(this)">
+            <div class="form-group has-feedback{{ $errors->has('nome') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="nome" value="{{ old('nome') }}" placeholder="Nome Completo">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
-                @error('login')
+                @if ($errors->has('nome'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('nome') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group has-feedback">
+                <input placeholder="E-mail" id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
 
-            {{-- <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}"> --}}
             <div class="form-group has-feedback">
-                <input placeholder="Senha" id="senha" type="password" class="form-control @error('senha') is-invalid @enderror" name="senha" required autocomplete="Senha">
+                <input placeholder="Senha" id="senhanova" type="password" class="form-control @error('senha') is-invalid @enderror" name="senhanova" required autocomplete="Senha">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
-                @error('senha')
+                @error('senhanova')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="form-group has-feedback">
+                <input placeholder="Confirme a Nova Senha" id="senhanovaconfirma" type="password" class="form-control @error('senha') is-invalid @enderror" name="senhanovaconfirma" required autocomplete="Confirme a Senha">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+                @error('senhanova')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -117,19 +131,15 @@
                     <button type="submit" id="entrar" class="btn btn-primary btn-block btn-flat botaoEnviar">Entrar</button>
 
                 </div>
+                <div class="form-group col-sm-12" id="voltar">
+                    <br>
+                    <a href="{{ route('login') }}">Voltar</a>
+                </div>
                 <!-- /.col -->
             </div>
         </form>
 
-        <div>
-            <a href="{{ url('/novoUsuario') }}" class="text-center">Cadastrar um novo Usuário</a>
-        </div>
-        <div>
-            <a href="{{ url('/alterarSenha') }}">Alterar a senha</a><br>
-        </div>
-        
-        
-        
+
     </div>
     <!-- /.login-box-body -->
 </div>
@@ -144,6 +154,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
 
+<script type="text/javascript">
+    $( document ).ready(function() {
+        // Handler for .ready() called.
+        if ($("#selecione").val() == "C") {
+                document.getElementById("login").placeholder = "Informe o CNPJ da empresa";
+        } else {
+            document.getElementById("login").placeholder = "Login";
+        }
+    });
+        $("#selecione").change(function() {
+            if ($("#selecione").val() == "C") {
+                document.getElementById("login").placeholder = "Informe o CNPJ da empresa";
+            } else {
+                document.getElementById("login").placeholder = "Login";
+            }
+        });
 
+
+        // $(function () {
+        //     $('input').iCheck({
+        //         checkboxClass: 'icheckbox_square-blue',
+        //         radioClass: 'iradio_square-blue',
+        //         increaseArea: '20%' // optional
+        //     });
+        // });
+</script>
 </body>
 </html>

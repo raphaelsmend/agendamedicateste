@@ -28,7 +28,7 @@
 </head>
 
 <body class="skin-green sidebar-mini">
-@if (!Auth::guest())
+{{-- @if (!Auth::guest()) --}}
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
@@ -55,7 +55,7 @@
                                 <img src="/imagens/logo.png"
                                      class="user-image" alt="User Image"/>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                                <span class="hidden-xs">{{session('Usuarios_nome')}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
@@ -63,8 +63,8 @@
                                     <img src="/imagens/logo.png"
                                          class="img-circle" alt="User Image"/>
                                     <p>
-                                        {{ Auth::user()->name }}
-                                        <small>Usuário desde {{ Auth::user()->created_at->format('M. Y') }}</small>
+                                        {{session('Usuarios_nome')}}
+                                        <small>Usuário desde {{ session('Usuarios_create_at') }}</small>
                                     </p>
                                 </li>
                                 <!-- Menu Footer-->
@@ -73,13 +73,14 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div> --}}
                                     <div class="pull-right">
-                                        <a href="{{ url('/logout') }}" class="btn btn-default btn-flat"
+                                        <a href="/sair" class="btn btn-default btn-flat">Sair</a>
+                                        {{-- <a href="{{ url('/logout') }}" class="btn btn-default btn-flat"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Sair
-                                        </a>
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        </a> --}}
+                                        {{-- <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             @csrf
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </li>
                             </ul>
@@ -102,8 +103,8 @@
         </footer>
 
     </div>
-@else
-    <nav class="navbar navbar-default navbar-static-top">
+{{-- @else --}}
+    {{-- <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -136,9 +137,9 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
-    <div id="page-content-wrapper">
+    {{-- <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -146,8 +147,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    @endif
+    </div> --}}
+    {{-- @endif --}}
 
     <!-- jQuery 3.1.1 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -169,6 +170,17 @@
     <script src="/js/jquery.mask.min.js" type="text/javascript"></script> 
     <script src="/js/jquery.maskMoney.js" type="text/javascript"></script>
     {{-- @stack('scripts') --}}
+
+    <script>
+        function formatarTabela(tabela){
+            return $("#"+tabela).DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese.json"
+                }
+            });
+        }
+    </script>
+
     @yield('scripts')
     @hasSection('javascript')
 		@yield('javascript')

@@ -38,7 +38,7 @@
 @section('javascript')
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#medicos-table').DataTable();
+            formatarTabela('medicos-table');
         } );
     </script>
 @endsection

@@ -59,7 +59,7 @@
 @section('javascript')
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#pacientes-table').DataTable();
+            formatarTabela('pacientes-table');
         } );
     </script>
 @endsection
