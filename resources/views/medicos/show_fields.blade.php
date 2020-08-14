@@ -13,6 +13,10 @@
 <!-- Especialidade Id Field -->
 <div class="form-group">
     {!! Form::label('especialidade_id', 'Especialidade:') !!}
-    <p>{{ $medicos->especialidade_id }}</p>
+    @if (isset($medicos->Especialidade->nome))
+        <p>{{ $medicos->Especialidade->nome }}</p>    
+    @else
+        <p></p>
+    @endif
 </div>
 

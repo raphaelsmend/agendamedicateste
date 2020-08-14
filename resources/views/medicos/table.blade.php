@@ -1,11 +1,11 @@
 <div class="table-responsive">
-    <table class="table" id="medicos-table">
+    <table class="table table-striped table-bordered" style="width:100%" id="medicos-table">
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Crm</th>
+                <th>CRM</th>
                 <th>Especialidade</th>
-                <th colspan="3">Ação</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -34,3 +34,11 @@
         </tbody>
     </table>
 </div>
+
+@section('javascript')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#medicos-table').DataTable();
+        } );
+    </script>
+@endsection

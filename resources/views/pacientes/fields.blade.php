@@ -22,9 +22,9 @@
                         <td style="padding-right: 10px"><strong>Telefone2:</strong></td>
                     </tr>
                     <tr>
-                        <td style="padding-right: 10px">{!! Form::text('nome', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100, 'style' => 'width:350px']) !!}</td>
-                        <td style="padding-right: 10px">{!! Form::date('datanascimento', null, ['class' => 'form-control','id'=>'datanascimento']) !!}</td>
-                        <td style="padding-right: 10px">
+                        <td style="padding-right: 10px;padding-top: 5px">{!! Form::text('nome', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100, 'style' => 'width:350px']) !!}</td>
+                        <td style="padding-right: 10px;padding-top: 5px">{!! Form::date('datanascimento', null, ['class' => 'form-control','id'=>'datanascimento']) !!}</td>
+                        <td style="padding-right: 10px;padding-top: 5px">
                                 {!! Form::select('genero', array(
                                 '' => 'Selecione', 
                                 'M' => 'Masculino', 
@@ -32,8 +32,8 @@
                                 , isset($paciente) ? $paciente->genero : '', ['class' => 'form-control','maxlength' => 1,'maxlength' => 1]) !!}    
                             
                         </td>
-                        <td style="padding-right: 10px">{!! Form::text('telefone1', null, ['class' => 'form-control','maxlength' => 14,'maxlength' => 14, 'id' => 'tel1']) !!}</td>
-                        <td style="padding-right: 10px">{!! Form::text('telefone2', null, ['class' => 'form-control','maxlength' => 15,'maxlength' => 15, 'id' => 'tel2']) !!}</td>
+                        <td style="padding-right: 10px;padding-top: 5px">{!! Form::text('telefone1', null, ['class' => 'form-control','maxlength' => 14,'maxlength' => 14, 'id' => 'tel1']) !!}</td>
+                        <td style="padding-right: 10px;padding-top: 5px">{!! Form::text('telefone2', null, ['class' => 'form-control','maxlength' => 15,'maxlength' => 15, 'id' => 'tel2']) !!}</td>
                     </tr>
                 </table>
             </div>    
@@ -41,62 +41,68 @@
     </div>    
 </div>    
 
-<h4 class="titulo"><i class="fa fa-fw fa-file-o" aria-hidden="true"></i>Endereço</h4>
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="form-group col-sm-12">
-            <table>
-                <tr>
-                    <td style="padding-right: 10px"><strong>Cep</strong></td>
-                    <td style="padding-right: 10px"><strong>Endereco</strong></td>
-                    <td style="padding-right: 10px"><strong>Número</strong></td>
-                    <td style="padding-right: 10px"><strong>Complemento</strong></td>
-                    <td style="padding-right: 10px"><strong>Bairro</strong></td>
-                    <td style="padding-right: 10px"><strong>Cidade</strong></td>
-                    <td style="padding-right: 10px"><strong>Uf</strong></td>
-                </tr>
-                <tr>
-                    <td style="padding-right: 10px">{!! Form::text('cep', null, ['class' => 'form-control','maxlength' => 9,'maxlength' => 9, 'style' => 'width:100px', 'id' => 'cep']) !!}</td>
-                    <td style="padding-right: 10px">{!! Form::text('endereco', null, ['class' => 'form-control','maxlength' => 200,'maxlength' => 200, 'style' => 'width:300px', 'id' => 'endereco']) !!}</td>
-                    <td style="padding-right: 10px">{!! Form::number('numero', null, ['class' => 'form-control', 'style' => 'width:90px', 'id' => 'numero']) !!}</td>
-                    <td style="padding-right: 10px">{!! Form::text('complemento', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100, 'style' => 'width:300px', 'id' => 'complemento']) !!}</td>
-                    <td style="padding-right: 10px">{!! Form::text('bairro', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100, 'id' => 'bairro']) !!}</td>
-                    <td style="padding-right: 10px">{!! Form::text('cidade', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100, 'style' => 'width:300px', 'id' => 'cidade']) !!}</td>
-                    <td style="padding-right: 10px">
-                        {!! Form::select('uf', array(
-                            '' => 'Selecione', 
-                            'AC' => 'AC',
-                            'AL' => 'AL',
-                            'AP' => 'AP',
-                            'AM' => 'AM',
-                            'BA' => 'BA',
-                            'CE' => 'CE',
-                            'DF' => 'DF',
-                            'ES' => 'ES',
-                            'GO' => 'GO',
-                            'MA' => 'MA',
-                            'MS' => 'MS',
-                            'MT' => 'MT',
-                            'MG' => 'MG',
-                            'PA' => 'PA',
-                            'PB' => 'PB',
-                            'PR' => 'PR',
-                            'PE' => 'PE',
-                            'PI' => 'PI',
-                            'RJ' => 'RJ',
-                            'RN' => 'RN',
-                            'RS' => 'RS',
-                            'RO' => 'RO',
-                            'RR' => 'RR',
-                            'SC' => 'SC',
-                            'SP' => 'SP',
-                            'SE' => 'SE',
-                            'TO' => 'TO',
-                            )
-                            , isset($paciente) ? $paciente->uf : '', ['class' => 'form-control','maxlength' => 2,'maxlength' => 2, 'style' => 'width:110px', 'id' => 'uf']) !!}
-                    </td>
-                </tr>
-            </table>
+<div class="form-group col-sm-12">
+    <h4 class="titulo"><i class="fa fa-fw fa-file-o" aria-hidden="true"></i>Endereço</h4>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group col-sm-12">
+                <table>
+                    <tr>
+                        <td style="padding-right: 10px"><strong>Cep</strong></td>
+                        <td style="padding-right: 10px"><strong>Endereco</strong></td>
+                        <td style="padding-right: 10px"><strong>Número</strong></td>
+                        <td style="padding-right: 10px"><strong>Complemento</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 10px;padding-top: 5px">{!! Form::text('cep', null, ['class' => 'form-control','maxlength' => 9,'maxlength' => 9, 'style' => 'width:100px', 'id' => 'cep']) !!}</td>
+                        <td style="padding-right: 10px;padding-top: 5px">{!! Form::text('endereco', null, ['class' => 'form-control','maxlength' => 200,'maxlength' => 200, 'style' => 'width:300px', 'id' => 'endereco']) !!}</td>
+                        <td style="padding-right: 10px;padding-top: 5px">{!! Form::number('numero', null, ['class' => 'form-control', 'style' => 'width:90px', 'id' => 'numero']) !!}</td>
+                        <td style="padding-right: 10px;padding-top: 5px">{!! Form::text('complemento', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100, 'style' => 'width:300px', 'id' => 'complemento']) !!}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 10px;padding-top: 10px"><strong>Bairro</strong></td>
+                        <td style="padding-right: 10px"><strong>Cidade</strong></td>
+                        <td style="padding-right: 10px"><strong>Uf</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 10px;padding-top: 5px">{!! Form::text('bairro', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100, 'id' => 'bairro']) !!}</td>
+                        <td style="padding-right: 10px;padding-top: 5px">{!! Form::text('cidade', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100, 'style' => 'width:300px', 'id' => 'cidade']) !!}</td>
+                        <td style="padding-right: 10px;padding-top: 5px">
+                            {!! Form::select('uf', array(
+                                '' => 'Selecione', 
+                                'AC' => 'AC',
+                                'AL' => 'AL',
+                                'AP' => 'AP',
+                                'AM' => 'AM',
+                                'BA' => 'BA',
+                                'CE' => 'CE',
+                                'DF' => 'DF',
+                                'ES' => 'ES',
+                                'GO' => 'GO',
+                                'MA' => 'MA',
+                                'MS' => 'MS',
+                                'MT' => 'MT',
+                                'MG' => 'MG',
+                                'PA' => 'PA',
+                                'PB' => 'PB',
+                                'PR' => 'PR',
+                                'PE' => 'PE',
+                                'PI' => 'PI',
+                                'RJ' => 'RJ',
+                                'RN' => 'RN',
+                                'RS' => 'RS',
+                                'RO' => 'RO',
+                                'RR' => 'RR',
+                                'SC' => 'SC',
+                                'SP' => 'SP',
+                                'SE' => 'SE',
+                                'TO' => 'TO',
+                                )
+                                , isset($paciente) ? $paciente->uf : '', ['class' => 'form-control','maxlength' => 2,'maxlength' => 2, 'style' => 'width:110px', 'id' => 'uf']) !!}
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

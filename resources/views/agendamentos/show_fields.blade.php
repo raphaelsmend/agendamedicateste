@@ -1,18 +1,27 @@
 <!-- Medico Id Field -->
 <div class="form-group">
-    {!! Form::label('medico_id', 'Medico Id:') !!}
-    <p>{{ $agendamento->medico_id }}</p>
+    {!! Form::label('medico_id', 'Medico:') !!}
+    @if (isset($agendamento->Medicos->nome))
+        <p>{{$agendamento->Medicos->nome}}</p>
+    @endif
 </div>
 
 <!-- Paciente Id Field -->
 <div class="form-group">
-    {!! Form::label('paciente_id', 'Paciente Id:') !!}
-    <p>{{ $agendamento->paciente_id }}</p>
+    {!! Form::label('paciente_id', 'Paciente:') !!}
+    @if (isset($agendamento->Paciente->nome))
+    <p>{{$agendamento->Paciente->nome}}</p>
+@endif
+</div>
+<!-- Dataagenda Field -->
+<div class="form-group">
+    {!! Form::label('dataagenda', 'Data Agenda:') !!}
+    <p>{{ date('d/m/Y',strtotime($agendamento->dataagenda)) }}</p>
 </div>
 
-<!-- Datahoraagenda Field -->
+<!-- Horaagenda Field -->
 <div class="form-group">
-    {!! Form::label('datahoraagenda', 'Datahoraagenda:') !!}
-    <p>{{ $agendamento->datahoraagenda }}</p>
+    {!! Form::label('horaagenda', 'Hora Agenda:') !!}
+    <p>{{ $agendamento->horaagenda }}</p>
 </div>
 

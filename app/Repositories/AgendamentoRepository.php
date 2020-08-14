@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class AgendamentoRepository
  * @package App\Repositories
- * @version August 13, 2020, 6:25 pm UTC
+ * @version August 14, 2020, 1:23 am UTC
 */
 
 class AgendamentoRepository extends BaseRepository
@@ -19,7 +19,8 @@ class AgendamentoRepository extends BaseRepository
     protected $fieldSearchable = [
         'medico_id',
         'paciente_id',
-        'datahoraagenda'
+        'dataagenda',
+        'horaagenda'
     ];
 
     /**

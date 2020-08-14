@@ -9,7 +9,8 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
-
+use DB;
+use App\Models\Agendamento;
 class AgendamentoController extends AppBaseController
 {
     /** @var  AgendamentoRepository */
@@ -29,8 +30,10 @@ class AgendamentoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $agendamentos = $this->agendamentoRepository->paginate(10);
-
+        // $agendamentos = $this->agendamentoRepository->paginate(10);
+        $agendamentos = Agendamento::orderBy('dataagenda', 'asc')
+        ->paginate(10);
+        // dd($agendamentos);
         return view('agendamentos.index')
             ->with('agendamentos', $agendamentos);
     }
@@ -42,7 +45,29 @@ class AgendamentoController extends AppBaseController
      */
     public function create()
     {
-        return view('agendamentos.create');
+        $medicos = DB::table('medico')->get();
+        
+        $medicosArray = array();
+        $medicosArray[''] = 'Selecione';
+        if( count($medicos) > 0 ){
+            foreach ($medicos as $key => $value) {
+                $medicosArray[$value->id] = $value->nome;
+            }
+        }
+
+        $pacientes = DB::table('paciente')->get();
+        
+        $pacientesArray = array();
+        $pacientesArray[''] = 'Selecione';
+        if( count($pacientes) > 0 ){
+            foreach ($pacientes as $key => $value) {
+                $pacientesArray[$value->id] = $value->nome;
+            }
+        }
+        
+        return view('agendamentos.create')
+        ->with('pacientesArray', $pacientesArray)
+        ->with('medicosArray', $medicosArray);
     }
 
     /**
@@ -95,7 +120,7 @@ class AgendamentoController extends AppBaseController
         $agendamento = $this->agendamentoRepository->find($id);
 
         if (empty($agendamento)) {
-            Flash::error('Agendamento não encontrado.');
+            Flash::error('Agendamento não encontrado');
 
             return redirect(route('agendamentos.index'));
         }
@@ -116,7 +141,7 @@ class AgendamentoController extends AppBaseController
         $agendamento = $this->agendamentoRepository->find($id);
 
         if (empty($agendamento)) {
-            Flash::error('Agendamento não encontrado.');
+            Flash::error('Agendamento não encontrado');
 
             return redirect(route('agendamentos.index'));
         }
@@ -142,14 +167,14 @@ class AgendamentoController extends AppBaseController
         $agendamento = $this->agendamentoRepository->find($id);
 
         if (empty($agendamento)) {
-            Flash::error('Agendamento não encontrado.');
+            Flash::error('Agendamento não encontrado');
 
             return redirect(route('agendamentos.index'));
         }
 
         $this->agendamentoRepository->delete($id);
 
-        Flash::success('Agendamento excluído com sucesso.');
+        Flash::success('Agendamento ecluído com sucesso.');
 
         return redirect(route('agendamentos.index'));
     }

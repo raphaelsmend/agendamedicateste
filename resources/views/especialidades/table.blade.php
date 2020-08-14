@@ -1,9 +1,9 @@
 <div class="table-responsive">
-    <table class="table" id="especialidades-table">
+    <table class="table table-striped table-bordered" style="width:100%" id="especialidades-table">
         <thead>
             <tr>
                 <th>Nome</th>
-                <th colspan="3">Ação</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -24,3 +24,11 @@
         </tbody>
     </table>
 </div>
+
+@section('javascript')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#especialidades-table').DataTable();
+        } );
+    </script>
+@endsection

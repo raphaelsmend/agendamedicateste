@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Agendamento
  * @package App\Models
- * @version August 13, 2020, 6:25 pm UTC
+ * @version August 14, 2020, 1:23 am UTC
  *
  * @property integer $medico_id
  * @property integer $paciente_id
- * @property string|\Carbon\Carbon $datahoraagenda
+ * @property string $dataagenda
+ * @property string $horaagenda
  */
 class Agendamento extends Model
 {
@@ -31,7 +32,8 @@ class Agendamento extends Model
     public $fillable = [
         'medico_id',
         'paciente_id',
-        'datahoraagenda'
+        'dataagenda',
+        'horaagenda'
     ];
 
     /**
@@ -43,7 +45,8 @@ class Agendamento extends Model
         'id' => 'integer',
         'medico_id' => 'integer',
         'paciente_id' => 'integer',
-        'datahoraagenda' => 'datetime'
+        'dataagenda' => 'date',
+        'horaagenda' => 'string'
     ];
 
     /**
@@ -54,11 +57,17 @@ class Agendamento extends Model
     public static $rules = [
         'medico_id' => 'required|integer',
         'paciente_id' => 'required|integer',
-        'datahoraagenda' => 'required',
+        'dataagenda' => 'required',
+        'horaagenda' => 'nullable|string|max:5',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
 
-    
+    public function Medicos(){
+        return $this->hasOne('App\Models\Medicos', 'id', 'medico_id');
+    }
+    public function Paciente(){
+        return $this->hasOne('App\Models\Paciente', 'id', 'paciente_id');
+    }
 }

@@ -1,20 +1,20 @@
 <div class="table-responsive">
-    <table class="table" id="pacientes-table">
+    <table class="table table-striped table-bordered" style="width:100%" id="pacientes-table">
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Datanascimento</th>
+                <th>Dta. Nascimento</th>
                 <th>Genero</th>
-                <th>Telefone1</th>
-                <th>Telefone2</th>
-                <th>Cep</th>
+                <th>Tel. Fixo</th>
+                <th>Tel. Celular</th>
+                {{-- <th>Cep</th>
                 <th>Endereco</th>
                 <th>Numero</th>
                 <th>Complemento</th>
                 <th>Bairro</th>
                 <th>Cidade</th>
-                <th>Uf</th>
-                <th colspan="3">Ação</th>
+                <th>Uf</th> --}}
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -34,13 +34,13 @@
                 @endswitch
                 <td>{{ $paciente->telefone1 }}</td>
                 <td>{{ $paciente->telefone2 }}</td>
-                <td>{{ $paciente->cep }}</td>
+                {{-- <td>{{ $paciente->cep }}</td>
                 <td>{{ $paciente->endereco }}</td>
                 <td>{{ $paciente->numero }}</td>
                 <td>{{ $paciente->complemento }}</td>
                 <td>{{ $paciente->bairro }}</td>
                 <td>{{ $paciente->cidade }}</td>
-                <td>{{ $paciente->uf }}</td>
+                <td>{{ $paciente->uf }}</td> --}}
                 <td>
                     {!! Form::open(['route' => ['pacientes.destroy', $paciente->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -55,3 +55,11 @@
         </tbody>
     </table>
 </div>
+
+@section('javascript')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#pacientes-table').DataTable();
+        } );
+    </script>
+@endsection
